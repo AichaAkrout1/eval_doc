@@ -1,0 +1,41 @@
+{
+  "name": "mydoctor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "back": "nodemon server.js",
+    "front": "cd client && npm start",
+    "dev": "concurrently \"npm run back\" \"npm run front\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mui/icons-material": "^5.14.1",
+    "@mui/material": "^5.14.2",
+    "@mui/styles": "^5.14.1",
+    "@react-google-maps/api": "^2.19.2",
+    "antd": "^5.7.3",
+    "bcrypt": "^5.1.0",
+    "cdbreact": "^1.5.18",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "google-map-react": "^2.2.1",
+    "google-maps-react": "^2.0.6",
+    "jsonwebtoken": "^9.0.1",
+    "material-ui-rating": "^4.2.0",
+    "mdb-react-ui-kit": "^6.1.0",
+    "mongoose": "^7.3.4",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "react-rating": "^2.0.5",
+    "styled-components": "^6.0.5"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "dotenv": "^16.3.1",
+    "nodemon": "^3.0.1"
+  }
+}
