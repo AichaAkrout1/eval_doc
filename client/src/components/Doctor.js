@@ -1,14 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import BACKGROUND from "../assets/images/headerdoctor/background.png";
-import { BsSearch } from "react-icons/bs";
-import { BsFillGeoFill, BsFillGeoAltFill } from "react-icons/bs";
+import { FaCity } from "react-icons/fa";
+import { BsFillGeoFill, BsFillGeoAltFill, BsSearch } from "react-icons/bs";
 import "../Scss/doctor.css";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Rating from "react-rating";
+import {AiFillHeart, AiOutlineHeart} from "react-icons/ai"
 
-
-function Doctor({ ping, setping, text, settext }) {
+function Doctor({ ping, setping, text, settext, region, setregion}) {
   const doctors = useSelector((state) => state.doctor?.doctorliste);
   console.log(doctors);
   return (
@@ -28,7 +29,7 @@ function Doctor({ ping, setping, text, settext }) {
             <input
               type="text"
               name="Name or Doctor Speciality"
-              placeholder="Name or Doctor Speciality*"
+              placeholder="Name Of Doctor*"
               required
               onChange={(e) => settext(e.target.value)}
               style={{
@@ -44,9 +45,9 @@ function Doctor({ ping, setping, text, settext }) {
             <input
               type="text"
               name="Name or Doctor Speciality"
-              placeholder="Find your location Or Enter a city*"
+              placeholder="Enter a city*"
               required
-              onChange={(e) => settext(e.target.value)}
+              onChange={(e) => setregion(e.target.value)}
               style={{
                 width: "464px",
                 height: "47px",
@@ -66,7 +67,8 @@ function Doctor({ ping, setping, text, settext }) {
           <div className="col-12 mt-3">
             {doctors
               ?.filter((el) =>
-                el?.name?.toLowerCase().includes(text.toLowerCase())
+                el?.name?.toLowerCase().includes(text.toLowerCase()) &&
+                el?.region?.toLowerCase().includes(region.toLowerCase())
               )
               .map((el) => (
                 <Link
@@ -85,6 +87,7 @@ function Doctor({ ping, setping, text, settext }) {
                       <div className="img-square-wrapper">
                         <img className="" src={el.image} alt="Card image cap" />
                       </div>
+                     
                       <div className="card-body">
                         <button
                           className="card-title"
@@ -99,6 +102,24 @@ function Doctor({ ping, setping, text, settext }) {
                         >
                           Dr. {el.name} {el.lastname}
                         </button>
+                        <div style={{marginLeft:"9rem", marginTop:"-2.3rem"}}>
+                        <Rating
+                          placeholderRating={5}
+                          placeholderSymbol={
+                            <AiFillHeart
+                              style={{ color: "#00A100" }}
+                              className="IconRate"
+                            />
+                          }
+                          emptySymbol={<AiOutlineHeart className="IconRate" />}
+                          fullSymbol={
+                            <AiFillHeart
+                              style={{ color: "#00A100" }}
+                              className="IconRate"
+                            />
+                          }
+                        />
+                      </div>
                         <p
                           className="card-text"
                           style={{
@@ -109,9 +130,11 @@ function Doctor({ ping, setping, text, settext }) {
                           {el.speciality}
                         </p>
                         <p>
-                          <BsFillGeoAltFill style={{ color: "#3073D7" }} />{" "}
+                          <FaCity style={{ color: "#3073D7" }} />
                           Adress: {el.adress}
                         </p>
+                        <p>
+                          <BsFillGeoAltFill style={{ color: "#3073D7" }}/>{el.region}</p>  
                       </div>
                     </div>
                   </div>

@@ -12,6 +12,7 @@ const doctorSchema = new schema({
     consultationPrice:{type : Number},
     adress:{type : String},
     region:{type : String},
+    rating:{type : Number},
     isAdmin:{type: Boolean, default:false},
     isDoctor:{type: Boolean, default:true},
 

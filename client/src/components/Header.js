@@ -5,6 +5,7 @@ import { BsSearch } from "react-icons/bs";
 import { FaLocationDot } from "react-icons/fa6";
 import About from "./About";
 import MagazineList from "./MagazineList";
+import Contact from "./Contact";
 
 function Header({ping, setping}) {
   return (
@@ -16,23 +17,23 @@ function Header({ping, setping}) {
         </div>
         <input
           type="text"
-          name="Name or Doctor Speciality"
-          placeholder="Name or Doctor Speciality*"
+          name="Name Of Doctor "
+          placeholder="Name Of Doctor*"
           required
           style={{
-            width: "464px",
+            width: "450px",
             height: "47px",
             background: "rgb(20 51 149)",
             border: "none",
           }}
         />
         <div className="icon-search">
-          <FaLocationDot style={{ marginLeft: "55rem" }} />
+          <FaLocationDot style={{ marginLeft: "60rem" }} />
         </div>
         <input
           type="text"
-          name="Name or Doctor Speciality"
-          placeholder="Find your location Or Enter a city*"
+          name="Region"
+          placeholder="Enter a city*"
           required
           style={{
             width: "464px",
@@ -41,7 +42,6 @@ function Header({ping, setping}) {
             border: "none",
           }}
         />
-        <button className="btn-search">Research</button>
       </div>
       <div>
         <p
@@ -62,6 +62,7 @@ function Header({ping, setping}) {
       </div>
       <About/>
       <MagazineList ping={ping} setping={setping}/>
+      <Contact/>
     </div>
   );
 }

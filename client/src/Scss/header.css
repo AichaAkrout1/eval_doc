@@ -11,15 +11,18 @@
     display: flex;
     justify-content: center;
     margin-top: -40rem;
-    margin-left: 209px;
+    margin-left: 80px;
 }
 input::placeholder{
     color: #ffffff;
     font-family:Georgia, 'Times New Roman', Times, serif;
     text-align:center;
-    margin-left: 14px;
+    margin-left: 30px;
 }
-
+input{
+    color: #fff;
+    padding: 18px 120px;
+}
 .icon-search{
     position: absolute;
     margin-right: 55rem;

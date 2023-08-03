@@ -91,3 +91,12 @@
 .contentTrailer{
     margin-bottom: 20px;
 }
+.IconRate{
+    font-size: 2rem;
+    padding-right: -15rem;
+}
+
+input{
+    color: #fff;
+    padding: 18px 140px;
+} 

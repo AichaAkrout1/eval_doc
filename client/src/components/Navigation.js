@@ -32,6 +32,7 @@ function Navigation() {
           <FaIcons.FaBars onClick={showSidebar} />
         </Link>
         <img src={Logo} alt="eval doc" style={{marginLeft:"190px"}}/>
+        <Link to="/signup">
         <button
             style={{
               background: "#005DDD",
@@ -48,6 +49,8 @@ function Navigation() {
           >
             Register
           </button>
+          </Link>
+          <Link to="/login">
           <button
             style={{
               background: "transparent",
@@ -57,12 +60,13 @@ function Navigation() {
               fontSize:"16px",
             }}
           >
+            
             <LiaUserCircle
               style={{ fontSize: "27px", color: "#fff", marginRight: "8px" }}
             />
             Sign in
           </button>
-        
+          </Link>
       </div>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items" onClick={showSidebar}>
