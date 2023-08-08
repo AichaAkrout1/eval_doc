@@ -9,6 +9,7 @@ const userSchema = new schema({
     email:{type: String, },
     password:{type: String, },
     isAdmin:{type: Boolean, default:false},
+    isUser:{type: Boolean, default:true},
   });
 
 

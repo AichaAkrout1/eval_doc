@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../Scss/login.css";
 import Logo from "../assets/images/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "../redux/user/userSlice";
 
 function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user?.user);
+  console.log('user',user)
+  const isAuth =  localStorage.getItem("token");
+  const [register, setRegister] = useState({
+    image:"",
+    name: "",
+    lastname: "",
+    email: "",
+    password: "",
+  });
+
+  const [patient, setpatient] = useState({
+    email: "",
+    password: "",
+  });
   return (
     <div
       className="login template d-flex justify-content-center align-items-center 100-w vh-100 "
@@ -27,6 +46,8 @@ function Login() {
               type="email"
               placeholder="Enter email"
               className="form-control placelogin"
+              onChange={(e) => setpatient({ ...patient, email: e.target.value })}
+              
             />
           </div>
           <div
@@ -35,9 +56,10 @@ function Login() {
           >
             <label htmlFor="password" style={{fontFamily:"serif"}}>Passwords</label>
             <Form.Control
-              type="email"
+              type="password"
               placeholder="Enter password"
               className="form-control placelogin"
+              onChange={(e) => setpatient({ ...patient, password: e.target.value })}
             />
           </div>
           <div className="mb-2" style={{ margin: "20px 0 0 80px" }}>
@@ -54,6 +76,19 @@ function Login() {
           <div className="d-grid">
             <button
               className="btn btn-primary"
+                 onClick={() => {
+                {
+                  dispatch(userLogin(patient));
+                  // setping(!ping)
+                  
+                  {isAuth && user?.isAdmin === true || isAuth && user?.isUser === true?(
+                     navigate("/")
+                  ):
+                  navigate("/") 
+                  }
+                  
+                }
+              }}
               style={{
                 width: "300px",
                 margin: "15px 0 0 80px",

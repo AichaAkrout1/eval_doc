@@ -38,7 +38,7 @@ export const SidebarData = [
   },
   {
     title: "Account",
-    path: "/profile",
+    path: "/",
     icon: <RiIcons.RiAccountBoxFill />,
     cName: "nav-text"
   }

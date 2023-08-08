@@ -17,6 +17,9 @@ import Avis from './components/Avis';
 import { userCurrent } from './redux/user/userSlice';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Register from './components/Register';
+import Contact from './components/Contact';
+import { Footer } from './components/Footer';
 
 function App() {
   const magazines = useSelector((state) => state.magazine?.magazineliste);
@@ -48,10 +51,9 @@ function App() {
         <Route path="/avis" element= {<Avis ping={ping} setping={setping}/>} />
         <Route path="/login" element={ <Login  ping={ping} setping={setping}/> } />
         <Route path="/signup" element={ <Signup  ping={ping} setping={setping}/> } />
+        <Route path="/contact" element={ <Contact  ping={ping} setping={setping}/> } />
       </Routes>
-      
-     
-      
+      <Footer/> 
     </div>
   );
 }

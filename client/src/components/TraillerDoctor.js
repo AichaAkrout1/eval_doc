@@ -17,10 +17,10 @@ function TraillerDoctor({ doctors, ping, setping }) {
   console.log(doc);
 
   const [avis, setavis] = useState({
-    image:user?.name,
+    image:user?.image,
     nameUser:user?.name,
     IDdoctor:doc?._id,
-    nameDoctor:doc?.name && doc?.lastname,
+    nameDoctor:doc?.name,
     message:"",
     date:new Date()
   })
@@ -111,7 +111,7 @@ function TraillerDoctor({ doctors, ping, setping }) {
       </div>
       <Card style={{margin:"5rem 8rem 0 9rem"}}>
       <Card.Header style={{fontSize:"1.5rem", fontFamily:"cursive"}}>Avis</Card.Header>
-      {Avis?.filter((el) => el?.nameUser == user?.name).map((el,i) =>
+      {Avis?.filter((el) => el?.nameUser === user?.name).map((el,i) =>
       <Card.Body key={i}>
         <Card.Img variant="top" src={el.image} />
         <Card.Title>{el.nameUser}</Card.Title>

@@ -1,13 +1,30 @@
 import React, { useState } from 'react'
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../Scss/login.css";
 import Logo from "../assets/images/logo.png";
-import { FacebookLoginButton } from "react-social-login-buttons";
-import {LoginSocialFacebook} from "reactjs-social-login"
+import { useDispatch, useSelector } from 'react-redux';
+import { userRegister } from '../redux/user/userSlice';
+
 
 function Signup() {
-    const [Profile, setProfile] = useState(null)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user?.user);
+  console.log('user',user)
+  const isAuth =  localStorage.getItem("token");
+  const [register, setRegister] = useState({
+    image:"",
+    name: "",
+    lastname: "",
+    email: "",
+    password: "",
+  });
+
+  const [patient, setpatient] = useState({
+    email: "",
+    password: "",
+  });
   return (
     <div
       className="signup template d-flex justify-content-center align-items-center 100-w vh-100 "
@@ -22,35 +39,62 @@ function Signup() {
           <h3 className="text-center" style={{marginTop:"20px", fontFamily:"serif"}}>Sign Up</h3>
           <div
             className="mb-2"
-            style={{ width: "300px", margin: "50px 0 0 80px" }}
+            style={{ width: "300px", margin: "30px 0 0 80px" }}
           >
             <label htmlFor="First Name" style={{fontFamily:"serif"}}>First Name</label>
             <Form.Control
               type="email"
               placeholder="Enter First Name"
               className="form-control placelogin"
+              required=""
+              onChange={(e) =>
+                setRegister({ ...register, name: e.target.value })
+              }
             />
           </div>
           <div
             className="mb-2"
-            style={{ width: "300px", margin: "20px 0 0 80px" }}
+            style={{ width: "300px", margin: "15px 0 0 80px" }}
           >
             <label htmlFor="Last Name" style={{fontFamily:"serif"}}>Last Name</label>
             <Form.Control
               type="email"
               placeholder="Enter Last Name"
               className="form-control placelogin"
+              required=""
+              onChange={(e) =>
+                setRegister({ ...register, lastname: e.target.value })
+              }
             />
           </div>
           <div
             className="mb-2"
-            style={{ width: "300px", margin: "20px 0 0 80px" }}
+            style={{ width: "300px", margin: "15px 0 0 80px" }}
+          >
+            <label htmlFor="email" style={{fontFamily:"serif"}}>Email</label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              className="form-control placelogin"
+              required=""
+              onChange={(e) =>
+                setRegister({ ...register, email: e.target.value })
+              }
+            />
+          </div>
+          <div
+            className="mb-2"
+            style={{ width: "300px", margin: "10px 0 0 80px" }}
           >
             <label htmlFor="password" style={{fontFamily:"serif"}}>Passwords</label>
             <Form.Control
-              type="email"
+              type="password"
               placeholder="Enter password"
               className="form-control placelogin"
+              required=""
+              onChange={(e) =>
+                setRegister({ ...register, password: e.target.value })
+              }
             />
           </div>
           <div className="mb-2" style={{ margin: "20px 0 0 80px" }}>
@@ -74,6 +118,13 @@ function Signup() {
                 fontWeight: "bold",
                 fontFamily:"serif"
               }}
+              onClick={() => {
+                dispatch(userRegister(register));
+              
+                setTimeout(() => {
+                  navigate("/login");
+                }, 1000);
+              }}
             >
               Sign Up
             </button>
@@ -84,26 +135,6 @@ function Signup() {
           </p>
         </Form>
       </div>
-      <div>
-      {!Profile ? <LoginSocialFacebook
-      appId='184005557879077'
-      onResolve={(response) =>{
-        console.log(response)
-        setProfile(response?.data)
-      }}
-      onReject={(error) =>{
-        console.log(error)
-    }} 
-      >
-        <FacebookLoginButton/>
-      </LoginSocialFacebook>: ""}
-      {Profile? <div>
-        <h1>{Profile.name}</h1>
-        <img src={Profile.picture.data.url}/>
-      </div> :""};
-      </div>
-      
-      
     </div>
   )
 }
